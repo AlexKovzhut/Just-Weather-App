@@ -21,16 +21,16 @@
 
 /* Begin PBXFileReference section */
 		E097AB61269201D00026D91F /* Just Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E097AB64269201D00026D91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../Just Weather App/AppDelegate.swift"; sourceTree = "<group>"; };
-		E097AB66269201D00026D91F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../Just Weather App/SceneDelegate.swift"; sourceTree = "<group>"; };
+		E097AB64269201D00026D91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E097AB66269201D00026D91F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E097AB68269201D00026D91F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E097AB6B269201D00026D91F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E097AB6D269201D20026D91F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E097AB70269201D20026D91F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E097AB72269201D20026D91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Just Weather App/Info.plist"; sourceTree = "<group>"; };
+		E097AB72269201D20026D91F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0AEC91C269314DE00B503D5 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
 		E0D8AE0326923CE400180FFA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		E0D8AE0626923EE900180FFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "../Just Weather App/Constants.swift"; sourceTree = "<group>"; };
+		E0D8AE0626923EE900180FFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/alexanderkovzhut/Documents/GitHub/Just Weather App/Just Weather App/Sources/Constants.swift"; sourceTree = "<absolute>"; };
 		E0E88B1B2693232000C52DC9 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,8 +108,7 @@
 				E097AB66269201D00026D91F /* SceneDelegate.swift */,
 				E0D8AE0626923EE900180FFA /* Constants.swift */,
 			);
-			name = Sources;
-			path = ../Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
