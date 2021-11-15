@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		022009E42741AEEA008D4331 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022009E32741AEEA008D4331 /* HomeViewController.swift */; };
+		022009E42741AEEA008D4331 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022009E32741AEEA008D4331 /* WeatherViewController.swift */; };
+		02220D792741E1CB0088FF2B /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02220D782741E1CB0088FF2B /* WeatherService.swift */; };
 		E097AB65269201D00026D91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097AB64269201D00026D91F /* AppDelegate.swift */; };
 		E097AB6E269201D20026D91F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E097AB6D269201D20026D91F /* Assets.xcassets */; };
 		E097AB71269201D20026D91F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E097AB6F269201D20026D91F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		022009E32741AEEA008D4331 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		022009E32741AEEA008D4331 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		02220D782741E1CB0088FF2B /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		E097AB61269201D00026D91F /* Weather Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E097AB64269201D00026D91F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E097AB6D269201D20026D91F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -33,6 +35,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02220D762741E1500088FF2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02220D782741E1CB0088FF2B /* WeatherService.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		02220D772741E15A0088FF2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		E097AB58269201D00026D91F = {
 			isa = PBXGroup;
 			children = (
@@ -52,27 +69,29 @@
 		E097AB63269201D00026D91F /* Weather Application */ = {
 			isa = PBXGroup;
 			children = (
+				02220D762741E1500088FF2B /* Model */,
+				02220D772741E15A0088FF2B /* View */,
+				E097AB7C269207A00026D91F /* Controller */,
 				E097AB7D269207B30026D91F /* Resources */,
-				E097AB7C269207A00026D91F /* Controllers */,
 			);
 			path = "Weather Application";
 			sourceTree = "<group>";
 		};
-		E097AB7C269207A00026D91F /* Controllers */ = {
+		E097AB7C269207A00026D91F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				022009E32741AEEA008D4331 /* HomeViewController.swift */,
+				022009E32741AEEA008D4331 /* WeatherViewController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E097AB7D269207B30026D91F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E097AB72269201D20026D91F /* Info.plist */,
-				E097AB6D269201D20026D91F /* Assets.xcassets */,
-				E097AB6F269201D20026D91F /* LaunchScreen.storyboard */,
 				E097AB64269201D00026D91F /* AppDelegate.swift */,
+				E097AB6F269201D20026D91F /* LaunchScreen.storyboard */,
+				E097AB6D269201D20026D91F /* Assets.xcassets */,
+				E097AB72269201D20026D91F /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -146,7 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				022009E42741AEEA008D4331 /* HomeViewController.swift in Sources */,
+				022009E42741AEEA008D4331 /* WeatherViewController.swift in Sources */,
+				02220D792741E1CB0088FF2B /* WeatherService.swift in Sources */,
 				E097AB65269201D00026D91F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
