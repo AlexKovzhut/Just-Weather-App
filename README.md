@@ -6,4 +6,6 @@
 3. ` HTTP/URLSession ` request to Openweathermap api
 4. Implemented ` Delegation ` Design Pattern
 5. ` MVC Architecture`
-____
+
+>Preview
+_
