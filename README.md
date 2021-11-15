@@ -1,12 +1,10 @@
 # Weather Application 🌈
 ____
-
-## Test application with:
-
-### **1.** Without ~~Storyboards~~
-### **2.** Supporting Dark mode
-### **3.** Dynamic fonts
-### **4.** Delegate Pattern
-### **5.** NSURLSession with JSON
-### **6.** Architecture = MVC
+## >Simple iOS weather app
+____
+### **1.** Without ~~Storyboards~~, Auto Layout UI programmatically
+### **2.** Get GPS data by Core Location framework
+### **3.** HTTP/URLSession request to Openweathermap api
+### **4.** Implemented Delegation Design Pattern
+### **5.** MVC Architecture
 ____
