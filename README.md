@@ -1,6 +1,5 @@
 # Weather Application 🌈
-____
-## >Simple iOS weather app
+>Simple iOS weather app
 ____
 ### **1.** Without ~~Storyboards~~, Auto Layout UI programmatically
 ### **2.** Get GPS data by Core Location framework
