@@ -14,8 +14,9 @@ class WeatherViewController: UIViewController {
     var weatherService = WeatherService()
     
     private let backgroundView = UIImageView()
-    private let rootStuckView = UIStackView()
+    
     private let searchStuckView = UIStackView()
+    private let weatherStuckView = UIStackView()
     
     private let locationButton = UIButton()
     private let searchButton = UIButton()
@@ -47,28 +48,28 @@ extension WeatherViewController {
     private func setStyle() {
         // Main
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.image = UIImage(named: "Sunny-Cloudy")
+        backgroundView.backgroundColor = .black
         backgroundView.contentMode = .scaleToFill
         
-        rootStuckView.translatesAutoresizingMaskIntoConstraints = false
-        rootStuckView.spacing = 8
-        rootStuckView.axis = .vertical
-        rootStuckView.alignment = .center
-        rootStuckView.distribution = .fill
-        
         searchStuckView.translatesAutoresizingMaskIntoConstraints = false
-        searchStuckView.spacing = 8
+        searchStuckView.spacing = 10
         searchStuckView.axis = .horizontal
         searchStuckView.alignment = .fill
         searchStuckView.distribution = .fillProportionally
         
+        weatherStuckView.translatesAutoresizingMaskIntoConstraints = false
+        weatherStuckView.spacing = 15
+        weatherStuckView.axis = .vertical
+        weatherStuckView.alignment = .fill
+        weatherStuckView.distribution = .fill
+        
         locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.setBackgroundImage(UIImage(systemName: "location.circle"), for: .normal)
+        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle.fill"), for: .normal)
         locationButton.tintColor = .label
         locationButton.addTarget(self, action: #selector(locationPressed(_:)), for: .primaryActionTriggered)
         
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.setBackgroundImage(UIImage(systemName: "magnifyingglass.circle"), for: .normal)
+        searchButton.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         searchButton.tintColor = .label
         searchButton.addTarget(self, action: #selector(searchPressed(_:)), for: .primaryActionTriggered)
         
@@ -80,8 +81,8 @@ extension WeatherViewController {
         searchTextField.backgroundColor = .systemFill
         
         conditionImageView.translatesAutoresizingMaskIntoConstraints = false
-        conditionImageView.image = UIImage(systemName: "cloud.sun.fill")
-        conditionImageView.tintColor = .label
+        conditionImageView.image = UIImage(systemName: "cloud.rain")
+        conditionImageView.tintColor = .systemYellow
         
         temperaturelabel.translatesAutoresizingMaskIntoConstraints = false
         temperaturelabel.attributedText = makeTemperatureText(with: "21")
@@ -108,17 +109,16 @@ extension WeatherViewController {
     
     private func setLayout() {
         view.addSubview(backgroundView)
-        view.addSubview(rootStuckView)
         view.addSubview(searchStuckView)
-        
-        rootStuckView.addArrangedSubview(searchStuckView)
-        rootStuckView.addArrangedSubview(conditionImageView)
-        rootStuckView.addArrangedSubview(temperaturelabel)
-        rootStuckView.addArrangedSubview(cityLabel)
+        view.addSubview(weatherStuckView)
         
         searchStuckView.addArrangedSubview(locationButton)
         searchStuckView.addArrangedSubview(searchTextField)
         searchStuckView.addArrangedSubview(searchButton)
+        
+        weatherStuckView.addArrangedSubview(conditionImageView)
+        weatherStuckView.addArrangedSubview(temperaturelabel)
+        weatherStuckView.addArrangedSubview(cityLabel)
         
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -126,11 +126,12 @@ extension WeatherViewController {
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            rootStuckView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-            rootStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1.5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: rootStuckView.trailingAnchor, multiplier: 1.5),
+            searchStuckView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            searchStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: searchStuckView.trailingAnchor, multiplier: 1),
             
-            searchStuckView.widthAnchor.constraint(equalTo: rootStuckView.widthAnchor),
+            weatherStuckView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            weatherStuckView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             locationButton.heightAnchor.constraint(equalToConstant: 40),
@@ -138,8 +139,7 @@ extension WeatherViewController {
             searchButton.widthAnchor.constraint(equalToConstant: 40),
             searchButton.heightAnchor.constraint(equalToConstant: 40),
             
-            conditionImageView.heightAnchor.constraint(equalToConstant: 120),
-            conditionImageView.widthAnchor.constraint(equalToConstant: 120),
+            conditionImageView.heightAnchor.constraint(equalToConstant: 180)
         ])
     }
 }
