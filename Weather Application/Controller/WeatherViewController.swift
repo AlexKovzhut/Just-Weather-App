@@ -14,14 +14,11 @@ class WeatherViewController: UIViewController {
     var weatherService = WeatherService()
 
     private let backgroundView = UIImageView()
-
     private let searchStuckView = UIStackView()
     private let weatherStuckView = UIStackView()
-
     private let locationButton = UIButton()
     private let searchButton = UIButton()
     private let searchTextField = UITextField()
-
     private let conditionImageView = UIImageView()
     private let temperaturelabel = UILabel()
     private let cityLabel = UILabel()
@@ -29,11 +26,15 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Good day, Alexander"
+        
         setup()
         setStyle()
         setLayout()
     }
 }
+
+// MARK: - View
 
 extension WeatherViewController {
     private func setup() {
@@ -48,8 +49,8 @@ extension WeatherViewController {
     private func setStyle() {
         // Main
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.backgroundColor = .black
         backgroundView.contentMode = .scaleToFill
+        backgroundView.backgroundColor = .black
 
         searchStuckView.translatesAutoresizingMaskIntoConstraints = false
         searchStuckView.spacing = 10
@@ -60,8 +61,8 @@ extension WeatherViewController {
         weatherStuckView.translatesAutoresizingMaskIntoConstraints = false
         weatherStuckView.spacing = 15
         weatherStuckView.axis = .vertical
-        weatherStuckView.alignment = .fill
-        weatherStuckView.distribution = .fill
+        weatherStuckView.alignment = .center
+        weatherStuckView.distribution = .fillProportionally
 
         locationButton.translatesAutoresizingMaskIntoConstraints = false
         locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle.fill"), for: .normal)
@@ -88,7 +89,7 @@ extension WeatherViewController {
         temperaturelabel.attributedText = makeTemperatureText(with: "21")
 
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
-        cityLabel.text = "London, England"
+        cityLabel.text = "Default city"
         cityLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
 
     }
@@ -110,13 +111,13 @@ extension WeatherViewController {
     private func setLayout() {
         view.addSubview(backgroundView)
         view.addSubview(searchStuckView)
+        view.addSubview(conditionImageView)
         view.addSubview(weatherStuckView)
 
         searchStuckView.addArrangedSubview(locationButton)
         searchStuckView.addArrangedSubview(searchTextField)
         searchStuckView.addArrangedSubview(searchButton)
-
-        weatherStuckView.addArrangedSubview(conditionImageView)
+        
         weatherStuckView.addArrangedSubview(temperaturelabel)
         weatherStuckView.addArrangedSubview(cityLabel)
 
@@ -129,9 +130,14 @@ extension WeatherViewController {
             searchStuckView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             searchStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: searchStuckView.trailingAnchor, multiplier: 1),
-
+            
+            conditionImageView.topAnchor.constraint(equalTo: searchStuckView.bottomAnchor, constant: 30),
+            conditionImageView.bottomAnchor.constraint(equalTo: weatherStuckView.topAnchor),
+            conditionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            weatherStuckView.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: -30),
             weatherStuckView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            weatherStuckView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            //weatherStuckView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             locationButton.heightAnchor.constraint(equalToConstant: 40),
@@ -139,7 +145,8 @@ extension WeatherViewController {
             searchButton.widthAnchor.constraint(equalToConstant: 40),
             searchButton.heightAnchor.constraint(equalToConstant: 40),
 
-            conditionImageView.heightAnchor.constraint(equalToConstant: 180)
+            conditionImageView.heightAnchor.constraint(equalToConstant: 180),
+            conditionImageView.widthAnchor.constraint(equalToConstant: 180)
         ])
     }
 }

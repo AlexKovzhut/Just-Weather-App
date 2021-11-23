@@ -4,6 +4,8 @@
 //
 //  Created by Alexander Kovzhut on 15.11.2021.
 
+import UIKit
+
 struct WeatherModel {
     let conditionId: Int
     let cityName: String
