@@ -50,7 +50,7 @@ extension WeatherViewController {
         // Main
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.contentMode = .scaleToFill
-        backgroundView.backgroundColor = .black
+        backgroundView.backgroundColor = .systemFill
 
         searchStuckView.translatesAutoresizingMaskIntoConstraints = false
         searchStuckView.spacing = 10
@@ -65,8 +65,8 @@ extension WeatherViewController {
         weatherStuckView.distribution = .fillProportionally
 
         locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle.fill"), for: .normal)
-        locationButton.tintColor = .label
+        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle"), for: .normal)
+        locationButton.tintColor = .systemPurple
         locationButton.addTarget(self, action: #selector(locationPressed(_:)), for: .primaryActionTriggered)
 
         searchButton.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +83,6 @@ extension WeatherViewController {
 
         conditionImageView.translatesAutoresizingMaskIntoConstraints = false
         conditionImageView.image = UIImage(systemName: "cloud.rain")
-        conditionImageView.tintColor = .systemYellow
 
         temperaturelabel.translatesAutoresizingMaskIntoConstraints = false
         temperaturelabel.attributedText = makeTemperatureText(with: "21")
@@ -91,6 +90,7 @@ extension WeatherViewController {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.text = "Default city"
         cityLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        cityLabel.textColor = .systemPurple
 
     }
 
@@ -132,12 +132,10 @@ extension WeatherViewController {
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: searchStuckView.trailingAnchor, multiplier: 1),
             
             conditionImageView.topAnchor.constraint(equalTo: searchStuckView.bottomAnchor, constant: 30),
-            conditionImageView.bottomAnchor.constraint(equalTo: weatherStuckView.topAnchor),
             conditionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            weatherStuckView.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: -30),
+            weatherStuckView.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: 30),
             weatherStuckView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            //weatherStuckView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             locationButton.heightAnchor.constraint(equalToConstant: 40),
