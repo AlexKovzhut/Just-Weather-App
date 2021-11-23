@@ -3,7 +3,6 @@
 //  Weather Application
 //
 //  Created by Alexander Kovzhut on 15.11.2021.
-//
 
 struct WeatherData: Codable {
     let name: String
@@ -12,7 +11,7 @@ struct WeatherData: Codable {
 }
 
 struct Main: Codable {
-    let temperature: Double
+    let temp: Double
 }
 
 struct Weather: Codable {

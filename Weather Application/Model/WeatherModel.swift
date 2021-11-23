@@ -3,17 +3,16 @@
 //  Weather Application
 //
 //  Created by Alexander Kovzhut on 15.11.2021.
-//
 
 struct WeatherModel {
     let conditionId: Int
     let cityName: String
     let temperature: Double
-    
+
     var temperatureString: String {
         return String(format: "%.0f", temperature)
     }
-    
+
     var conditionName: String {
         switch conditionId {
         case 200...232: return "cloud.bolt"
