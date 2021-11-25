@@ -9,7 +9,17 @@ import UIKit
 struct WeatherModel {
     let conditionId: Int
     let cityName: String
+    let countryName: String
+    let main: String
+    let description: String
     let temperature: Double
+    let tempMax: Double
+    let tempMin: Double
+    let speed: Double
+    let deg: Int
+    let pressure: Int
+    let humidity: Double
+    let visibility: Int
 
     var temperatureString: String {
         return String(format: "%.0f", temperature)

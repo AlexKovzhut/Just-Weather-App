@@ -19,6 +19,8 @@ protocol WeatherServiceDelegate: AnyObject {
 
 struct WeatherService {
     var delegate: WeatherServiceDelegate?
+    
+    //https://api.openweathermap.org/data/2.5/onecall?lat=59.9&lon=30.3&exclude=current&appid=98968b07c1dd9f318c47c889e6b070ec&units=metric&lang=en
 
     let weatherURL = "http://api.openweathermap.org/data/2.5/weather?appid=98968b07c1dd9f318c47c889e6b070ec&units=metric"
 
