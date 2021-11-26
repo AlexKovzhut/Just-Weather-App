@@ -22,12 +22,12 @@ class WeatherViewController: UIViewController {
     private let conditionImageView = UIImageView()
     private let temperaturelabel = UILabel()
     private let cityLabel = UILabel()
-    //
-    private let tempMaxlabel = UILabel()
-    private let tempMinlabel = UILabel()
-    private let windSpeedLabel = UILabel()
-    private let pressureLabel = UILabel()
-    private let humidityLabel = UILabel()
+    
+//    private let tempMaxlabel = UILabel()
+//    private let tempMinlabel = UILabel()
+//    private let windSpeedLabel = UILabel()
+//    private let pressureLabel = UILabel()
+//    private let humidityLabel = UILabel()
     
 
     override func viewDidLoad() {
@@ -99,15 +99,15 @@ extension WeatherViewController {
         cityLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         cityLabel.textColor = .systemPurple
         
-        tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        tempMinlabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        pressureLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        humidityLabel.translatesAutoresizingMaskIntoConstraints = false
+//        tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        tempMinlabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        pressureLabel.translatesAutoresizingMaskIntoConstraints = false
+//
+//        humidityLabel.translatesAutoresizingMaskIntoConstraints = false
         
 
     }
