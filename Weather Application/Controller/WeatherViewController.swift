@@ -9,16 +9,22 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
-
     private let locationManager = CLLocationManager()
     var weatherService = WeatherService()
 
     //Background View
     private let backgroundView = UIImageView()
     
-    //Stack views
+    //StackViews
     private let searchStuckView = UIStackView()
-    private let weatherStuckView = UIStackView()
+    private let cityCountryStuckView = UIStackView()
+    private let mainTempStuckView = UIStackView()
+    private let descriptionTempStuckView = UIStackView()
+    private let windStuckView = UIStackView()
+    private let firstOtherStuckView = UIStackView()
+    private let tempMinMaxStuckView = UIStackView()
+    private let secondOtherStuckView = UIStackView()
+    private let thirdOtherStuckView = UIStackView()
     
     //Search field and buttons
     private let locationButton = UIButton()
@@ -37,12 +43,11 @@ class WeatherViewController: UIViewController {
     private let tempMinlabel = UILabel()
     private let tempFeelsLike = UILabel()
     private let windSpeedLabel = UILabel()
-    private let windDwgreesLabel = UILabel()
+    private let windDegreesLabel = UILabel()
     private let pressureLabel = UILabel()
     private let humidityLabel = UILabel()
-
+    private let visibilityLabel = UILabel()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,86 +72,150 @@ extension WeatherViewController {
     }
 
     private func setStyle() {
-        // Main
+        //Background View
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.contentMode = .scaleToFill
-        backgroundView.backgroundColor = .systemFill
+        backgroundView.backgroundColor = .white
 
+        //StuckViews
         searchStuckView.translatesAutoresizingMaskIntoConstraints = false
         searchStuckView.spacing = 10
         searchStuckView.axis = .horizontal
         searchStuckView.alignment = .fill
         searchStuckView.distribution = .fillProportionally
-
-        weatherStuckView.translatesAutoresizingMaskIntoConstraints = false
-        weatherStuckView.spacing = 15
-        weatherStuckView.axis = .vertical
-        weatherStuckView.alignment = .center
-        weatherStuckView.distribution = .fillProportionally
-
-        locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle"), for: .normal)
-        locationButton.tintColor = .systemPurple
-        locationButton.addTarget(self, action: #selector(locationPressed(_:)), for: .primaryActionTriggered)
-
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        searchButton.tintColor = .label
-        searchButton.addTarget(self, action: #selector(searchPressed(_:)), for: .primaryActionTriggered)
-
+        
+        cityCountryStuckView.translatesAutoresizingMaskIntoConstraints = false
+        cityCountryStuckView.spacing = 1
+        cityCountryStuckView.axis = .horizontal
+        cityCountryStuckView.alignment = .leading
+        cityCountryStuckView.distribution = .fillEqually
+        
+        mainTempStuckView.translatesAutoresizingMaskIntoConstraints = false
+        mainTempStuckView.spacing = 4
+        mainTempStuckView.axis = .horizontal
+        mainTempStuckView.alignment = .leading
+        mainTempStuckView.distribution = .fill
+        
+        descriptionTempStuckView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTempStuckView.spacing = 4
+        descriptionTempStuckView.axis = .horizontal
+        descriptionTempStuckView.alignment = .leading
+        descriptionTempStuckView.distribution = .fill
+        
+        windStuckView.translatesAutoresizingMaskIntoConstraints = false
+        windStuckView.spacing = 4
+        windStuckView.axis = .horizontal
+        windStuckView.alignment = .leading
+        windStuckView.distribution = .fill
+        
+        firstOtherStuckView.translatesAutoresizingMaskIntoConstraints = false
+        firstOtherStuckView.spacing = 24
+        firstOtherStuckView.axis = .horizontal
+        firstOtherStuckView.alignment = .leading
+        firstOtherStuckView.distribution = .fillProportionally
+        
+        tempMinMaxStuckView.translatesAutoresizingMaskIntoConstraints = false
+        tempMinMaxStuckView.spacing = 0
+        tempMinMaxStuckView.axis = .horizontal
+        tempMinMaxStuckView.alignment = .fill
+        tempMinMaxStuckView.distribution = .fillEqually
+        
+        secondOtherStuckView.translatesAutoresizingMaskIntoConstraints = false
+        secondOtherStuckView.spacing = 24
+        secondOtherStuckView.axis = .horizontal
+        secondOtherStuckView.alignment = .leading
+        secondOtherStuckView.distribution = .fill
+        
+        thirdOtherStuckView.translatesAutoresizingMaskIntoConstraints = false
+        thirdOtherStuckView.spacing = 24
+        thirdOtherStuckView.axis = .horizontal
+        thirdOtherStuckView.alignment = .leading
+        thirdOtherStuckView.distribution = .fill
+        
+        //Field, buttons and labels in StuckView
+        //searchStuckView
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.font = UIFont.preferredFont(forTextStyle: .title1)
         searchTextField.placeholder = "Search"
         searchTextField.textAlignment = .left
         searchTextField.borderStyle = .roundedRect
         searchTextField.backgroundColor = .systemFill
-
-        conditionImageView.translatesAutoresizingMaskIntoConstraints = false
-        conditionImageView.image = UIImage(systemName: "cloud.rain")
-
-        temperaturelabel.translatesAutoresizingMaskIntoConstraints = false
-        temperaturelabel.attributedText = makeTemperatureText(with: "21")
-
+        
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        searchButton.tintColor = .label
+        searchButton.addTarget(self, action: #selector(searchPressed(_:)), for: .primaryActionTriggered)
+        
+        //cityCountryStuckView and locationStuckView
+        dayTimeLabel.translatesAutoresizingMaskIntoConstraints = false
+        dayTimeLabel.text = "Nov 11, 11:11am"
+        dayTimeLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.text = "Default city"
         cityLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        cityLabel.textColor = .systemPurple
         
         countryLabel.translatesAutoresizingMaskIntoConstraints = false
         countryLabel.text = "Deafault country"
         countryLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        countryLabel.textColor = .systemPurple
+        
+        locationButton.translatesAutoresizingMaskIntoConstraints = false
+        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle"), for: .normal)
+        locationButton.addTarget(self, action: #selector(locationPressed(_:)), for: .primaryActionTriggered)
+        
+        //mainTempStuckView
+        conditionImageView.translatesAutoresizingMaskIntoConstraints = false
+        conditionImageView.image = UIImage(systemName: "sun.max")
+        
+        temperaturelabel.translatesAutoresizingMaskIntoConstraints = false
+        temperaturelabel.attributedText = makeTemperatureText(with: "11")
+        
+        //descriptionTempStuckView
+        tempFeelsLike.translatesAutoresizingMaskIntoConstraints = false
+        tempFeelsLike.text = "Feels like 11ºC."
         
         mainDescription.translatesAutoresizingMaskIntoConstraints = false
-        mainDescription.text = "Deafault main description"
+        mainDescription.text = "Deafault main description."
         mainDescription.font = UIFont.preferredFont(forTextStyle: .body)
-        mainDescription.textColor = .systemOrange
+        //mainDescription.textColor = .systemOrange
         
         secondarydDescription.translatesAutoresizingMaskIntoConstraints = false
         secondarydDescription.text = "Deafault secondaryd description"
         secondarydDescription.font = UIFont.preferredFont(forTextStyle: .body)
-        secondarydDescription.textColor = .systemOrange
+        //secondarydDescription.textColor = .systemOrange
         
-//        tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        tempMinlabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        pressureLabel.translatesAutoresizingMaskIntoConstraints = false
-//
-//        humidityLabel.translatesAutoresizingMaskIntoConstraints = false
+        //firstOtherStuckView(windStuckView) and secondOtherStuckView
+        tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
+        tempMaxlabel.text = "Max: 99ºC"
+
+        tempMinlabel.translatesAutoresizingMaskIntoConstraints = false
+        tempMinlabel.text = "Min: 11ºC"
+
+        windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
+        windSpeedLabel.text = "1.1m/s"
         
+        windDegreesLabel.translatesAutoresizingMaskIntoConstraints = false
+        windDegreesLabel.text = "NW"
+        
+        pressureLabel.translatesAutoresizingMaskIntoConstraints = false
+        pressureLabel.text = "Pressure: 1111hPa"
+        
+        humidityLabel.translatesAutoresizingMaskIntoConstraints = false
+        humidityLabel.text = "Humidity: 11%"
+        
+        visibilityLabel.translatesAutoresizingMaskIntoConstraints = false
+        visibilityLabel.text = "Visibility: 1000"
 
     }
 
+    //View of temperature text
     private func makeTemperatureText(with temperature: String) -> NSAttributedString {
         var boldTextAttributes = [NSAttributedString.Key: AnyObject]()
         boldTextAttributes[.foregroundColor] = UIColor.label
-        boldTextAttributes[.font] = UIFont.boldSystemFont(ofSize: 100)
+        boldTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
 
         var plainTextAttributes = [NSAttributedString.Key: AnyObject]()
-        plainTextAttributes[.font] = UIFont.systemFont(ofSize: 80)
+        plainTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
 
         let text = NSMutableAttributedString(string: temperature, attributes: boldTextAttributes)
         text.append(NSAttributedString(string: "ºC", attributes: plainTextAttributes))
@@ -157,18 +226,41 @@ extension WeatherViewController {
     private func setLayout() {
         view.addSubview(backgroundView)
         view.addSubview(searchStuckView)
-        view.addSubview(conditionImageView)
-        view.addSubview(weatherStuckView)
-
-        searchStuckView.addArrangedSubview(locationButton)
+        view.addSubview(locationButton)
+        view.addSubview(dayTimeLabel)
+        view.addSubview(cityCountryStuckView)
+        view.addSubview(mainTempStuckView)
+        view.addSubview(descriptionTempStuckView)
+        view.addSubview(firstOtherStuckView)
+        view.addSubview(secondOtherStuckView)
+        view.addSubview(thirdOtherStuckView)
+        
         searchStuckView.addArrangedSubview(searchTextField)
         searchStuckView.addArrangedSubview(searchButton)
         
-        weatherStuckView.addArrangedSubview(temperaturelabel)
-        weatherStuckView.addArrangedSubview(cityLabel)
-        weatherStuckView.addArrangedSubview(countryLabel)
-        weatherStuckView.addArrangedSubview(mainDescription)
-        weatherStuckView.addArrangedSubview(secondarydDescription)
+        cityCountryStuckView.addArrangedSubview(cityLabel)
+        cityCountryStuckView.addArrangedSubview(countryLabel)
+        
+        mainTempStuckView.addArrangedSubview(conditionImageView)
+        mainTempStuckView.addArrangedSubview(temperaturelabel)
+        
+        descriptionTempStuckView.addArrangedSubview(tempFeelsLike)
+        descriptionTempStuckView.addArrangedSubview(mainDescription)
+        descriptionTempStuckView.addArrangedSubview(secondarydDescription)
+        
+        windStuckView.addArrangedSubview(windSpeedLabel)
+        windStuckView.addArrangedSubview(windDegreesLabel)
+        
+        tempMinMaxStuckView.addArrangedSubview(tempMaxlabel)
+        tempMinMaxStuckView.addArrangedSubview(tempMinlabel)
+        
+        firstOtherStuckView.addArrangedSubview(windStuckView)
+        firstOtherStuckView.addArrangedSubview(tempMinMaxStuckView)
+        
+        secondOtherStuckView.addArrangedSubview(humidityLabel)
+        secondOtherStuckView.addArrangedSubview(pressureLabel)
+        
+        thirdOtherStuckView.addArrangedSubview(visibilityLabel)
         
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -177,25 +269,47 @@ extension WeatherViewController {
             backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             searchStuckView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            searchStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: searchStuckView.trailingAnchor, multiplier: 1),
+            searchStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: searchStuckView.trailingAnchor, multiplier: 2),
             
-            conditionImageView.topAnchor.constraint(equalTo: searchStuckView.bottomAnchor, constant: 30),
-            conditionImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            locationButton.topAnchor.constraint(equalToSystemSpacingBelow: searchStuckView.bottomAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: locationButton.trailingAnchor, multiplier: 2),
             
-            weatherStuckView.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: 30),
-            weatherStuckView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dayTimeLabel.topAnchor.constraint(equalToSystemSpacingBelow: locationButton.bottomAnchor, multiplier: 2),
+            dayTimeLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             
+            cityCountryStuckView.topAnchor.constraint(equalTo: dayTimeLabel.bottomAnchor, constant: 1),
+            cityCountryStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: cityCountryStuckView.trailingAnchor, multiplier: 2),
             
+            mainTempStuckView.topAnchor.constraint(equalToSystemSpacingBelow: cityCountryStuckView.bottomAnchor, multiplier: 6),
+            mainTempStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: mainTempStuckView.trailingAnchor, multiplier: 2),
+            
+            descriptionTempStuckView.topAnchor.constraint(equalToSystemSpacingBelow: mainTempStuckView.bottomAnchor, multiplier: 1),
+            descriptionTempStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: descriptionTempStuckView.trailingAnchor, multiplier: 2),
+            
+            firstOtherStuckView.topAnchor.constraint(equalTo: descriptionTempStuckView.bottomAnchor, constant: 26),
+            firstOtherStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: firstOtherStuckView.trailingAnchor, multiplier: 2),
+            
+            secondOtherStuckView.topAnchor.constraint(equalTo: firstOtherStuckView.bottomAnchor, constant: 16),
+            secondOtherStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: secondOtherStuckView.trailingAnchor, multiplier: 2),
+            
+            thirdOtherStuckView.topAnchor.constraint(equalTo: secondOtherStuckView.bottomAnchor, constant: 16),
+            thirdOtherStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: thirdOtherStuckView.trailingAnchor, multiplier: 2),
+            
+            locationButton.widthAnchor.constraint(equalToConstant: 35),
+            locationButton.heightAnchor.constraint(equalToConstant: 35),
 
-            locationButton.widthAnchor.constraint(equalToConstant: 40),
-            locationButton.heightAnchor.constraint(equalToConstant: 40),
+            searchButton.widthAnchor.constraint(equalToConstant: 35),
+            searchButton.heightAnchor.constraint(equalToConstant: 35),
 
-            searchButton.widthAnchor.constraint(equalToConstant: 40),
-            searchButton.heightAnchor.constraint(equalToConstant: 40),
-
-            conditionImageView.heightAnchor.constraint(equalToConstant: 180),
-            conditionImageView.widthAnchor.constraint(equalToConstant: 180)
+            conditionImageView.heightAnchor.constraint(equalToConstant: 35),
+            conditionImageView.widthAnchor.constraint(equalToConstant: 35),
         ])
     }
 }
@@ -260,12 +374,21 @@ extension WeatherViewController: CLLocationManagerDelegate {
 extension WeatherViewController: WeatherServiceDelegate {
     // Update UI elements
     func didFetchWeather(_ weatherService: WeatherService, _ weather: WeatherModel) {
-        self.temperaturelabel.attributedText = self.makeTemperatureText(with: weather.tempString)
-        self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+        self.dayTimeLabel.text = weather.dayTime
         self.cityLabel.text = weather.cityName
         self.countryLabel.text = weather.countryName
+        self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+        self.temperaturelabel.attributedText = self.makeTemperatureText(with: weather.tempString)
+        self.tempFeelsLike.text = weather.tempFeelsLikeString
         self.mainDescription.text = weather.mainDescription
         self.secondarydDescription.text = weather.secondarydDescription
+        self.windSpeedLabel.text = weather.windSpeed
+        self.windDegreesLabel.text = weather.windDegrees
+        self.humidityLabel.text = weather.humidity
+        self.visibilityLabel.text = weather.visibility
+        self.tempMaxlabel.text = weather.tempMaxString
+        self.tempMinlabel.text = weather.tempMinString
+        self.pressureLabel.text = weather.pressure
     }
 
     func didFailWithError(_ weatherService: WeatherService, _ error: ServiceError) {

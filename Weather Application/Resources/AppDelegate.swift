@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         
-        window?.rootViewController = AuthViewController()
+        window?.rootViewController = WeatherViewController()
         
         return true
     }
