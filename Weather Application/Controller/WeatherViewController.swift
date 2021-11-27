@@ -13,21 +13,34 @@ class WeatherViewController: UIViewController {
     private let locationManager = CLLocationManager()
     var weatherService = WeatherService()
 
+    //Background View
     private let backgroundView = UIImageView()
+    
+    //Stack views
     private let searchStuckView = UIStackView()
     private let weatherStuckView = UIStackView()
+    
+    //Search field and buttons
     private let locationButton = UIButton()
     private let searchButton = UIButton()
     private let searchTextField = UITextField()
+    
+    //Weather description elements
+    private let dayTimeLabel = UILabel()
+    private let cityLabel = UILabel()
+    private let countryLabel = UILabel()
     private let conditionImageView = UIImageView()
     private let temperaturelabel = UILabel()
-    private let cityLabel = UILabel()
-    
-//    private let tempMaxlabel = UILabel()
-//    private let tempMinlabel = UILabel()
-//    private let windSpeedLabel = UILabel()
-//    private let pressureLabel = UILabel()
-//    private let humidityLabel = UILabel()
+    private let mainDescription = UILabel()
+    private let secondarydDescription = UILabel()
+    private let tempMaxlabel = UILabel()
+    private let tempMinlabel = UILabel()
+    private let tempFeelsLike = UILabel()
+    private let windSpeedLabel = UILabel()
+    private let windDwgreesLabel = UILabel()
+    private let pressureLabel = UILabel()
+    private let humidityLabel = UILabel()
+
     
 
     override func viewDidLoad() {
@@ -99,6 +112,21 @@ extension WeatherViewController {
         cityLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         cityLabel.textColor = .systemPurple
         
+        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        countryLabel.text = "Deafault country"
+        countryLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        countryLabel.textColor = .systemPurple
+        
+        mainDescription.translatesAutoresizingMaskIntoConstraints = false
+        mainDescription.text = "Deafault main description"
+        mainDescription.font = UIFont.preferredFont(forTextStyle: .body)
+        mainDescription.textColor = .systemOrange
+        
+        secondarydDescription.translatesAutoresizingMaskIntoConstraints = false
+        secondarydDescription.text = "Deafault secondaryd description"
+        secondarydDescription.font = UIFont.preferredFont(forTextStyle: .body)
+        secondarydDescription.textColor = .systemOrange
+        
 //        tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
 //
 //        tempMinlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -138,7 +166,10 @@ extension WeatherViewController {
         
         weatherStuckView.addArrangedSubview(temperaturelabel)
         weatherStuckView.addArrangedSubview(cityLabel)
-
+        weatherStuckView.addArrangedSubview(countryLabel)
+        weatherStuckView.addArrangedSubview(mainDescription)
+        weatherStuckView.addArrangedSubview(secondarydDescription)
+        
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -154,6 +185,8 @@ extension WeatherViewController {
             
             weatherStuckView.topAnchor.constraint(equalTo: conditionImageView.bottomAnchor, constant: 30),
             weatherStuckView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
 
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             locationButton.heightAnchor.constraint(equalToConstant: 40),
@@ -227,9 +260,12 @@ extension WeatherViewController: CLLocationManagerDelegate {
 extension WeatherViewController: WeatherServiceDelegate {
     // Update UI elements
     func didFetchWeather(_ weatherService: WeatherService, _ weather: WeatherModel) {
-        self.temperaturelabel.attributedText = self.makeTemperatureText(with: weather.temperatureString)
+        self.temperaturelabel.attributedText = self.makeTemperatureText(with: weather.tempString)
         self.conditionImageView.image = UIImage(systemName: weather.conditionName)
         self.cityLabel.text = weather.cityName
+        self.countryLabel.text = weather.countryName
+        self.mainDescription.text = weather.mainDescription
+        self.secondarydDescription.text = weather.secondarydDescription
     }
 
     func didFailWithError(_ weatherService: WeatherService, _ error: ServiceError) {

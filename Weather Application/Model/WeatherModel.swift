@@ -7,24 +7,41 @@
 import UIKit
 
 struct WeatherModel {
-    let conditionId: Int
-    let cityName: String
-    let countryName: String
-    let main: String
-    let description: String
-    let temperature: Double
-    let tempMax: Double
-    let tempMin: Double
-    let speed: Double
-    let deg: Int
-    let pressure: Int
-    let humidity: Double
-    let visibility: Int
+    let dayTime: Int //Dt
+    let timezone: Int //Timezone
+    let cityName: String //Name
+    let countryName: String //Sys.country
+    let conditionId: Int //Weather.id
+    let temperature: Double //Main.temp
+    let mainDescription: String //Weather.main
+    let secondarydDescription: String //Weather.description
+    let tempMax: Double //Main.temp_max
+    let tempMin: Double //Main.temp_min
+    let tempFeelsLike: Double //Main.feels_like
+    let windSpeed: Double //Wind.speed
+    let windDegrees: Int //Wind.deg
+    let pressure: Int //Main.pressure
+    let humidity: Double //Main.humidity
+    let visibility: Int //Visibility
 
-    var temperatureString: String {
+    //Bring temperatures to string
+    var tempString: String {
         return String(format: "%.0f", temperature)
     }
+    
+    var tempMaxString: String {
+        return String(format: "%.0f", tempMax)
+    }
+    
+    var tempMinString: String {
+        return String(format: "%.0f", tempMin)
+    }
+    
+    var tempFeelsLikeString: String {
+        return String(format: "%.0f", tempFeelsLike)
+    }
 
+    //Switch to system icon variants
     var conditionName: String {
         switch conditionId {
         case 200...232: return "cloud.bolt"

@@ -19,10 +19,8 @@ protocol WeatherServiceDelegate: AnyObject {
 
 struct WeatherService {
     var delegate: WeatherServiceDelegate?
-    
-    //https://api.openweathermap.org/data/2.5/onecall?lat=59.9&lon=30.3&exclude=current&appid=98968b07c1dd9f318c47c889e6b070ec&units=metric&lang=en
 
-    let weatherURL = "http://api.openweathermap.org/data/2.5/weather?appid=98968b07c1dd9f318c47c889e6b070ec&units=metric"
+    let weatherURL = "http://api.openweathermap.org/data/2.5/weather?appid=98968b07c1dd9f318c47c889e6b070ec&units=metric&lang=en"
 
     func fetchWeather(cityName: String) {
         guard let urlEncodedCityName = cityName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
@@ -32,11 +30,15 @@ struct WeatherService {
 
         let urlString = "\(weatherURL)&q=\(urlEncodedCityName)"
         performRequest(with: urlString)
+        
+        print(weatherURL)
     }
 
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString)
+        
+        print(weatherURL)
     }
 
     func performRequest(with urlString: String) {
@@ -84,11 +86,41 @@ struct WeatherService {
             return nil
         }
 
+        let dayTime = decodedData.dt
+        let timezone = decodedData.timezone
         let id = decodedData.weather[0].id
         let temperature = decodedData.main.temp
         let cityName = decodedData.name
+        let countryName = decodedData.sys.country
+        let mainDescription = decodedData.weather[0].main
+        let secondarydDescription = decodedData.weather[0].description
+        let tempMax = decodedData.main.temp_max
+        let tempMin = decodedData.main.temp_min
+        let tempFeelsLike = decodedData.main.feels_like
+        let windSpeed = decodedData.wind.speed
+        let windDegrees = decodedData.wind.deg
+        let pressure = decodedData.main.pressure
+        let humidity = decodedData.main.humidity
+        let visibility = decodedData.visibility
 
-        let weather = WeatherModel(conditionId: id, cityName: cityName, temperature: temperature)
+        let weather = WeatherModel(
+            dayTime: dayTime,
+            timezone: timezone,
+            cityName: cityName,
+            countryName: countryName,
+            conditionId: id,
+            temperature: temperature,
+            mainDescription: mainDescription,
+            secondarydDescription: secondarydDescription,
+            tempMax: tempMax,
+            tempMin: tempMin,
+            tempFeelsLike: tempFeelsLike,
+            windSpeed: windSpeed,
+            windDegrees: windDegrees,
+            pressure: pressure,
+            humidity: humidity,
+            visibility: visibility
+        )
 
         return weather
     }
