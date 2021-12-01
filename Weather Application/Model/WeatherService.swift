@@ -93,7 +93,6 @@ struct WeatherService {
         let cityName = decodedData.name
         let countryName = decodedData.sys.country
         let mainDescription = decodedData.weather[0].main
-        let secondarydDescription = decodedData.weather[0].description
         let tempMax = decodedData.main.temp_max
         let tempMin = decodedData.main.temp_min
         let tempFeelsLike = decodedData.main.feels_like
@@ -111,7 +110,6 @@ struct WeatherService {
             conditionId: id,
             temperature: temperature,
             mainDescription: mainDescription,
-            secondarydDescription: secondarydDescription,
             tempMax: tempMax,
             tempMin: tempMin,
             tempFeelsLike: tempFeelsLike,

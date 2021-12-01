@@ -14,7 +14,7 @@ struct WeatherModel {
     let conditionId: Int //Weather.id
     let temperature: Double //Main.temp
     let mainDescription: String //Weather.main
-    let secondarydDescription: String //Weather.description
+    //let secondarydDescription: String //Weather.description
     let tempMax: Double //Main.temp_max
     let tempMin: Double //Main.temp_min
     let tempFeelsLike: Double //Main.feels_like
@@ -24,7 +24,7 @@ struct WeatherModel {
     let humidity: Double //Main.humidity
     let visibility: Int //Visibility
 
-    //Bring temperatures to string
+    //Bring weather features to string
     var tempString: String {
         return String(format: "%.0f", temperature)
     }
@@ -40,6 +40,32 @@ struct WeatherModel {
     var tempFeelsLikeString: String {
         return String(format: "%.0f", tempFeelsLike)
     }
+    
+    var windSpeedString: String {
+        return String(windSpeed)
+    }
+    
+    var windDegreesString: String {
+        return String(windDegrees)
+    }
+    
+    var humidityString: String {
+        return String(format: "%.0f", humidity)
+    }
+    
+    var visibilityString: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value: visibility))
+        return formattedNumber!
+    }
+    
+    var pressureString: String {
+        return String(pressure)
+    }
+    
+    //Date formatter
+    //var date = 
 
     //Switch to system icon variants
     var conditionName: String {

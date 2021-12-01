@@ -19,7 +19,6 @@ class WeatherViewController: UIViewController {
     private let searchStuckView = UIStackView()
     private let cityCountryStuckView = UIStackView()
     private let mainTempStuckView = UIStackView()
-    private let descriptionTempStuckView = UIStackView()
     private let windStuckView = UIStackView()
     private let firstOtherStuckView = UIStackView()
     private let tempMinMaxStuckView = UIStackView()
@@ -37,11 +36,9 @@ class WeatherViewController: UIViewController {
     private let countryLabel = UILabel()
     private let conditionImageView = UIImageView()
     private let temperaturelabel = UILabel()
-    private let mainDescription = UILabel()
-    private let secondarydDescription = UILabel()
+    private let descriptionLabel = UILabel()
     private let tempMaxlabel = UILabel()
     private let tempMinlabel = UILabel()
-    private let tempFeelsLike = UILabel()
     private let windSpeedLabel = UILabel()
     private let windDegreesLabel = UILabel()
     private let pressureLabel = UILabel()
@@ -95,12 +92,6 @@ extension WeatherViewController {
         mainTempStuckView.axis = .horizontal
         mainTempStuckView.alignment = .leading
         mainTempStuckView.distribution = .fill
-        
-        descriptionTempStuckView.translatesAutoresizingMaskIntoConstraints = false
-        descriptionTempStuckView.spacing = 4
-        descriptionTempStuckView.axis = .horizontal
-        descriptionTempStuckView.alignment = .leading
-        descriptionTempStuckView.distribution = .fill
         
         windStuckView.translatesAutoresizingMaskIntoConstraints = false
         windStuckView.spacing = 4
@@ -171,18 +162,8 @@ extension WeatherViewController {
         temperaturelabel.attributedText = makeTemperatureText(with: "11")
         
         //descriptionTempStuckView
-        tempFeelsLike.translatesAutoresizingMaskIntoConstraints = false
-        tempFeelsLike.text = "Feels like 11ºC."
         
-        mainDescription.translatesAutoresizingMaskIntoConstraints = false
-        mainDescription.text = "Deafault main description."
-        mainDescription.font = UIFont.preferredFont(forTextStyle: .body)
         //mainDescription.textColor = .systemOrange
-        
-        secondarydDescription.translatesAutoresizingMaskIntoConstraints = false
-        secondarydDescription.text = "Deafault secondaryd description"
-        secondarydDescription.font = UIFont.preferredFont(forTextStyle: .body)
-        //secondarydDescription.textColor = .systemOrange
         
         //firstOtherStuckView(windStuckView) and secondOtherStuckView
         tempMaxlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -230,7 +211,7 @@ extension WeatherViewController {
         view.addSubview(dayTimeLabel)
         view.addSubview(cityCountryStuckView)
         view.addSubview(mainTempStuckView)
-        view.addSubview(descriptionTempStuckView)
+        view.addSubview(descriptionLabel)
         view.addSubview(firstOtherStuckView)
         view.addSubview(secondOtherStuckView)
         view.addSubview(thirdOtherStuckView)
@@ -243,10 +224,6 @@ extension WeatherViewController {
         
         mainTempStuckView.addArrangedSubview(conditionImageView)
         mainTempStuckView.addArrangedSubview(temperaturelabel)
-        
-        descriptionTempStuckView.addArrangedSubview(tempFeelsLike)
-        descriptionTempStuckView.addArrangedSubview(mainDescription)
-        descriptionTempStuckView.addArrangedSubview(secondarydDescription)
         
         windStuckView.addArrangedSubview(windSpeedLabel)
         windStuckView.addArrangedSubview(windDegreesLabel)
@@ -286,11 +263,11 @@ extension WeatherViewController {
             mainTempStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: mainTempStuckView.trailingAnchor, multiplier: 2),
             
-            descriptionTempStuckView.topAnchor.constraint(equalToSystemSpacingBelow: mainTempStuckView.bottomAnchor, multiplier: 1),
-            descriptionTempStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: descriptionTempStuckView.trailingAnchor, multiplier: 2),
+            descriptionLabel.topAnchor.constraint(equalToSystemSpacingBelow: mainTempStuckView.bottomAnchor, multiplier: 1),
+            descriptionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: descriptionLabel.trailingAnchor, multiplier: 2),
             
-            firstOtherStuckView.topAnchor.constraint(equalTo: descriptionTempStuckView.bottomAnchor, constant: 26),
+            firstOtherStuckView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 26),
             firstOtherStuckView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: firstOtherStuckView.trailingAnchor, multiplier: 2),
             
@@ -374,21 +351,19 @@ extension WeatherViewController: CLLocationManagerDelegate {
 extension WeatherViewController: WeatherServiceDelegate {
     // Update UI elements
     func didFetchWeather(_ weatherService: WeatherService, _ weather: WeatherModel) {
-        self.dayTimeLabel.text = weather.dayTime
+        //self.dayTimeLabel.text = weather.dayTime
         self.cityLabel.text = weather.cityName
         self.countryLabel.text = weather.countryName
         self.conditionImageView.image = UIImage(systemName: weather.conditionName)
         self.temperaturelabel.attributedText = self.makeTemperatureText(with: weather.tempString)
-        self.tempFeelsLike.text = weather.tempFeelsLikeString
-        self.mainDescription.text = weather.mainDescription
-        self.secondarydDescription.text = weather.secondarydDescription
-        self.windSpeedLabel.text = weather.windSpeed
-        self.windDegreesLabel.text = weather.windDegrees
-        self.humidityLabel.text = weather.humidity
-        self.visibilityLabel.text = weather.visibility
-        self.tempMaxlabel.text = weather.tempMaxString
-        self.tempMinlabel.text = weather.tempMinString
-        self.pressureLabel.text = weather.pressure
+        self.descriptionLabel.text = "Feels like \(weather.tempFeelsLikeString)ºC. \(weather.mainDescription)"
+        self.windSpeedLabel.text = "Wind: \(weather.windSpeedString)m/s"
+        self.windDegreesLabel.text = weather.windDegreesString
+        self.humidityLabel.text = "Humidity: \(weather.humidityString)%"
+        self.visibilityLabel.text = "Visibility: \(weather.visibilityString)km"
+        self.tempMaxlabel.text = "Max: \(weather.tempMaxString)"
+        self.tempMinlabel.text = "Min: \(weather.tempMinString)"
+        self.pressureLabel.text = "Pressure: \(weather.pressureString)hPa"
     }
 
     func didFailWithError(_ weatherService: WeatherService, _ error: ServiceError) {
