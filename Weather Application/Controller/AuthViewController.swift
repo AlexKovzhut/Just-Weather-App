@@ -97,9 +97,9 @@ extension AuthViewController {
 extension AuthViewController {
     @objc func signUpButtonTapped() {
         if loginTextField.text != "" {
-            let navigationVC = UINavigationController(rootViewController: WeatherViewController())
-            navigationVC.modalPresentationStyle = .fullScreen
-            self.present(navigationVC, animated: true)
+            let weatherVC = WeatherViewController()
+            weatherVC.modalPresentationStyle = .fullScreen
+            self.present(weatherVC, animated: true, completion: nil)
         } else {
             loginTextField.placeholder = "Please, enter your name"
         }
