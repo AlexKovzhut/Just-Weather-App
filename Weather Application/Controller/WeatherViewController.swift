@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
+    
     private let locationManager = CLLocationManager()
     var weatherService = WeatherService()
 
@@ -36,18 +37,35 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "Good day, Alexander"
         
         setup()
         setStyle()
         setLayout()
+        setupNavBar()
+    }
+    
+    @objc func settingsButtonPresssed() {
+        let favCityVC = FavCitysViewController()
+        navigationController?.pushViewController(favCityVC, animated: true)
     }
 }
 
 // MARK: - View
 
 extension WeatherViewController {
+    private func setupNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = "Good afternoon, Alexander"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingsButtonPresssed))
+        
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.label,
+            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1)
+        ]
+        
+        navigationController?.navigationBar.largeTitleTextAttributes = attrs
+    }
+    
     private func setup() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -171,7 +189,7 @@ extension WeatherViewController {
             locationButton.topAnchor.constraint(equalToSystemSpacingBelow: searchStuckView.bottomAnchor, multiplier: 1),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: locationButton.trailingAnchor, multiplier: 2),
             
-            dayTimeLabel.topAnchor.constraint(equalToSystemSpacingBelow: locationButton.bottomAnchor, multiplier: 2),
+            dayTimeLabel.topAnchor.constraint(equalToSystemSpacingBelow: locationButton.bottomAnchor, multiplier: 0),
             dayTimeLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             
             cityCountryLabel.topAnchor.constraint(equalTo: dayTimeLabel.bottomAnchor, constant: 1),
@@ -240,7 +258,6 @@ extension WeatherViewController: UITextFieldDelegate {
 
         searchTextField.text = ""
     }
-
 }
 
 // MARK: - CLLocationManagerDelegate

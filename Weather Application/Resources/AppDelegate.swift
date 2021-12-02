@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         
-        window?.rootViewController = AuthViewController()
+        let weatherVC = WeatherViewController()
+        let weatherNavVC = UINavigationController(rootViewController: weatherVC)
+        
+        window?.rootViewController = weatherNavVC
         
         return true
     }
