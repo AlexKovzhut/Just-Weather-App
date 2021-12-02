@@ -36,7 +36,6 @@ extension FavCitysViewController {
     }
     
     private func setupNavBar() {
-        navigationItem.title = "Favorite City"
         navigationItem.searchController = searchController
         
         searchController.searchBar.placeholder = "Search here"
@@ -65,7 +64,7 @@ extension FavCitysViewController {
 
 extension FavCitysViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +76,7 @@ extension FavCitysViewController: UITableViewDataSource {
 
 extension FavCitysViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -48,14 +48,14 @@ extension FavCityTableViewCell {
         self.addSubview(temperaturelabel)
         
         NSLayoutConstraint.activate([
-            cityLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            cityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            cityLabel.centerYAnchor.constraint(equalTo: centerYAnchor.self),
+            cityLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
             
-            conditionImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            conditionImageView.centerYAnchor.constraint(equalTo: centerYAnchor.self),
             conditionImageView.leadingAnchor.constraint(equalTo: cityLabel.trailingAnchor, constant: 30),
             
-            temperaturelabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            temperaturelabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 15)
+            temperaturelabel.centerYAnchor.constraint(equalTo: centerYAnchor.self),
+            temperaturelabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25)
         ])
     }
 }
