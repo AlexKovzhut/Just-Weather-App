@@ -91,3 +91,4 @@ extension FavCitysViewController: UISearchBarDelegate {
         print(searchText)
     }
 }
+

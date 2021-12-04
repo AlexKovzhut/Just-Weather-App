@@ -15,6 +15,8 @@
 		02B6095D2759597100BF6EF4 /* FavCitysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6095C2759597100BF6EF4 /* FavCitysViewController.swift */; };
 		02B6095F27595C3500BF6EF4 /* FavCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6095E27595C3500BF6EF4 /* FavCityTableViewCell.swift */; };
 		02B609612759603D00BF6EF4 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B609602759603D00BF6EF4 /* UIViewController.swift */; };
+		02B60963275A8DF700BF6EF4 /* PopUpWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B60962275A8DF700BF6EF4 /* PopUpWeatherViewController.swift */; };
+		02B60965275BF0D700BF6EF4 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B60964275BF0D700BF6EF4 /* UserSettings.swift */; };
 		02CA4EB0274D84B3004A0BC7 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA4EAF274D84B3004A0BC7 /* AuthViewController.swift */; };
 		02CA4EB6274D9BAB004A0BC7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CA4EB5274D9BAB004A0BC7 /* UITextField.swift */; };
 		E097AB65269201D00026D91F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097AB64269201D00026D91F /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		02B6095C2759597100BF6EF4 /* FavCitysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCitysViewController.swift; sourceTree = "<group>"; };
 		02B6095E27595C3500BF6EF4 /* FavCityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCityTableViewCell.swift; sourceTree = "<group>"; };
 		02B609602759603D00BF6EF4 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		02B60962275A8DF700BF6EF4 /* PopUpWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWeatherViewController.swift; sourceTree = "<group>"; };
+		02B60964275BF0D700BF6EF4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		02CA4EAF274D84B3004A0BC7 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		02CA4EB5274D9BAB004A0BC7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		E097AB61269201D00026D91F /* Weather Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +62,7 @@
 				0259D7C42743048B0047DA1C /* WeatherModel.swift */,
 				0259D7C32743048B0047DA1C /* WeatherService.swift */,
 				02B6095A2758070B00BF6EF4 /* UserModel.swift */,
+				02B60964275BF0D700BF6EF4 /* UserSettings.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				022009E32741AEEA008D4331 /* WeatherViewController.swift */,
 				02B6095C2759597100BF6EF4 /* FavCitysViewController.swift */,
 				02CA4EAF274D84B3004A0BC7 /* AuthViewController.swift */,
+				02B60962275A8DF700BF6EF4 /* PopUpWeatherViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,10 +215,12 @@
 				0259D7C82743048B0047DA1C /* WeatherData.swift in Sources */,
 				02B6095F27595C3500BF6EF4 /* FavCityTableViewCell.swift in Sources */,
 				02B609612759603D00BF6EF4 /* UIViewController.swift in Sources */,
+				02B60965275BF0D700BF6EF4 /* UserSettings.swift in Sources */,
 				02B6095B2758070B00BF6EF4 /* UserModel.swift in Sources */,
 				02CA4EB6274D9BAB004A0BC7 /* UITextField.swift in Sources */,
 				0259D7C62743048B0047DA1C /* WeatherService.swift in Sources */,
 				0259D7C72743048B0047DA1C /* WeatherModel.swift in Sources */,
+				02B60963275A8DF700BF6EF4 /* PopUpWeatherViewController.swift in Sources */,
 				02CA4EB0274D84B3004A0BC7 /* AuthViewController.swift in Sources */,
 				E097AB65269201D00026D91F /* AppDelegate.swift in Sources */,
 				02B6095D2759597100BF6EF4 /* FavCitysViewController.swift in Sources */,

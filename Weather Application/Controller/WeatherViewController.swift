@@ -55,7 +55,7 @@ class WeatherViewController: UIViewController {
 extension WeatherViewController {
     private func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.topItem?.title = "Good afternoon, Alexander"
+        navigationController?.navigationBar.topItem?.title = "Good afternoon, \(UserSettings.userModel.name)"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingsButtonPresssed))
         
         let attrs = [
