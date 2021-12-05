@@ -22,9 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let weatherNavVC = UINavigationController(rootViewController: weatherVC)
         
         //window?.rootViewController = weatherNavVC
-        window?.rootViewController = AuthViewController()
+        window?.rootViewController = SignInViewController()
         
         return true
+    }
+    
+    //about application life cycle
+    func applicationWillResignActive(_ application: UIApplication) {
+        print(#function)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print(#function)
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        print(#function)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        print(#function)
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        print(#function)
     }
 }
 

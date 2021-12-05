@@ -13,19 +13,19 @@ class WeatherViewController: UIViewController {
     private let locationManager = CLLocationManager()
     var weatherService = WeatherService()
 
-    //Background View
+    //background view
     private let backgroundView = UIImageView()
     
-    //StackViews
+    //stack view
     private let searchStuckView = UIStackView()
     private let tempStuckView = UIStackView()
     
-    //Search field and buttons
+    //search field and buttons
     private let locationButton = UIButton()
     private let searchButton = UIButton()
     private let searchTextField = UITextField()
     
-    //Weather description elements
+    //view elements
     private let dayTimeLabel = UILabel()
     private let cityCountryLabel = UILabel()
     private let conditionImageView = UIImageView()
@@ -41,30 +41,25 @@ class WeatherViewController: UIViewController {
         setup()
         setStyle()
         setLayout()
-        setupNavBar()
-    }
-    
-    @objc func settingsButtonPresssed() {
-        let favCityVC = FavCitysViewController()
-        navigationController?.pushViewController(favCityVC, animated: true)
+        //setupNavBar()
     }
 }
 
 // MARK: - View
 
 extension WeatherViewController {
-    private func setupNavBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.topItem?.title = "Good afternoon, \(UserSettings.userModel.name)"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingsButtonPresssed))
-        
-        let attrs = [
-            NSAttributedString.Key.foregroundColor: UIColor.label,
-            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1)
-        ]
-        
-        navigationController?.navigationBar.largeTitleTextAttributes = attrs
-    }
+//    private func setupNavBar() {
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.topItem?.title = "Good afternoon, \(UserSettings.userModel.name)"
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingsButtonPresssed))
+//
+//        let attrs = [
+//            NSAttributedString.Key.foregroundColor: UIColor.label,
+//            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1)
+//        ]
+//
+//        navigationController?.navigationBar.largeTitleTextAttributes = attrs
+//    }
     
     private func setup() {
         locationManager.delegate = self
@@ -118,7 +113,7 @@ extension WeatherViewController {
         cityCountryLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         
         locationButton.translatesAutoresizingMaskIntoConstraints = false
-        locationButton.setBackgroundImage(UIImage(systemName: "location.north.circle"), for: .normal)
+        locationButton.setBackgroundImage(UIImage(systemName: "location.square"), for: .normal)
         locationButton.addTarget(self, action: #selector(locationPressed(_:)), for: .primaryActionTriggered)
         
         //mainTempStuckView

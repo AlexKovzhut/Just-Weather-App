@@ -17,7 +17,6 @@ class FavCitysViewController: UIViewController {
         super.viewDidLoad()
         
         setup()
-        setupNavBar()
         setStyle()
         setLayout()
     }
@@ -33,16 +32,6 @@ extension FavCitysViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchController.searchBar.delegate = self
-    }
-    
-    private func setupNavBar() {
-        navigationItem.searchController = searchController
-        
-        searchController.searchBar.placeholder = "Search here"
-        searchController.obscuresBackgroundDuringPresentation = false
-        
-        let addButton = createCustomButton(image: "plus.circle", selector: #selector(addCityButtonPressed))
-        navigationItem.rightBarButtonItem = addButton
     }
     
     private func setStyle() {
