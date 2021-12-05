@@ -17,12 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-        
-        //let weatherVC = WeatherViewController()
-        //let weatherNavVC = UINavigationController(rootViewController: weatherVC)
-        
-        //window?.rootViewController = weatherNavVC
+
         window?.rootViewController = SignInViewController()
+        //window?.rootViewController = SignUpViewController()
         
         return true
     }

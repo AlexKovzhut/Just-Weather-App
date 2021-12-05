@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  SignUpViewController.swift
 //  Weather Application
 //
 //  Created by Alexander Kovzhut on 23.11.2021.
@@ -60,7 +60,7 @@ extension SignUpViewController {
         
         authStackView.addAuthenticationStackView(axis: .vertical)
         
-        logoLabel.addAuthenticationLabel(text: "Registration")
+        logoLabel.addAuthenticationLabel(text: "Registration", font: UIFont(name: "Futura", size: 35)!)
         
         firstNameTextField.addAuthenticationTextField(placeholderText: "First name")
         lastNameTextField.addAuthenticationTextField(placeholderText: "Last name")
@@ -68,7 +68,8 @@ extension SignUpViewController {
         emailTextField.addAuthenticationTextField(placeholderText: "Email address")
         passwordTextField.addAuthenticationTextField(placeholderText: "Password")
         
-        signUpButton.addAuthenticationButton(title: "Sign Up", selector: #selector(signUpButtonTapped))
+        signUpButton.addAuthenticationButton(title: "Sign Up")
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -108,8 +109,10 @@ extension SignUpViewController {
 // MARK: - Navigation
 
 extension SignUpViewController {
-    @objc func signUpButtonTapped() {
-        
+    @objc func signUpButtonPressed() {
+        let weatherVC = WeatherViewController()
+        self.modalPresentationStyle = .fullScreen
+        self.present(weatherVC, animated: true, completion: nil)
     }
 }
 

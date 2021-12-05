@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WeatherViewController.swift
 //  Weather Application
 //
 //  Created by Alexander Kovzhut on 14.11.2021.
@@ -9,7 +9,6 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
-    
     private let locationManager = CLLocationManager()
     var weatherService = WeatherService()
 
@@ -41,26 +40,12 @@ class WeatherViewController: UIViewController {
         setup()
         setStyle()
         setLayout()
-        //setupNavBar()
     }
 }
 
 // MARK: - View
 
 extension WeatherViewController {
-//    private func setupNavBar() {
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.navigationBar.topItem?.title = "Good afternoon, \(UserSettings.userModel.name)"
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(settingsButtonPresssed))
-//
-//        let attrs = [
-//            NSAttributedString.Key.foregroundColor: UIColor.label,
-//            NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1)
-//        ]
-//
-//        navigationController?.navigationBar.largeTitleTextAttributes = attrs
-//    }
-    
     private func setup() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -138,21 +123,6 @@ extension WeatherViewController {
         tempMaxMinlabel.text = "Max: 11 | Min: 11"
     }
 
-    //View of temperature text
-    private func makeTemperatureText(with temperature: String) -> NSAttributedString {
-        var boldTextAttributes = [NSAttributedString.Key: AnyObject]()
-        boldTextAttributes[.foregroundColor] = UIColor.label
-        boldTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
-
-        var plainTextAttributes = [NSAttributedString.Key: AnyObject]()
-        plainTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
-
-        let text = NSMutableAttributedString(string: temperature, attributes: boldTextAttributes)
-        text.append(NSAttributedString(string: "ºC", attributes: plainTextAttributes))
-
-        return text
-    }
-
     private func setLayout() {
         view.addSubview(backgroundView)
         view.addSubview(searchStuckView)
@@ -220,6 +190,21 @@ extension WeatherViewController {
             conditionImageView.heightAnchor.constraint(equalToConstant: 35),
             conditionImageView.widthAnchor.constraint(equalToConstant: 35),
         ])
+    }
+    
+    //View of temperature text
+    private func makeTemperatureText(with temperature: String) -> NSAttributedString {
+        var boldTextAttributes = [NSAttributedString.Key: AnyObject]()
+        boldTextAttributes[.foregroundColor] = UIColor.label
+        boldTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
+
+        var plainTextAttributes = [NSAttributedString.Key: AnyObject]()
+        plainTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .largeTitle)
+
+        let text = NSMutableAttributedString(string: temperature, attributes: boldTextAttributes)
+        text.append(NSAttributedString(string: "ºC", attributes: plainTextAttributes))
+
+        return text
     }
 }
 

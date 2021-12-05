@@ -80,4 +80,6 @@ struct WeatherModel {
         default: return "cloud"
         }
     }
+    
+    //var date = NSDate
 }

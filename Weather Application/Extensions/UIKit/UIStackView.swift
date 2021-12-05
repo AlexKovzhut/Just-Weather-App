@@ -10,7 +10,7 @@ import UIKit
 extension UIStackView {
     func addAuthenticationStackView(axis: NSLayoutConstraint.Axis) {
         self.axis = axis
-        self.spacing = 20
+        self.spacing = 16
         self.alignment = .fill
         self.distribution = .fillEqually
         self.translatesAutoresizingMaskIntoConstraints = false

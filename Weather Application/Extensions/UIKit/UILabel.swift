@@ -8,10 +8,10 @@
 import UIKit
 
 extension UILabel {
-    func addAuthenticationLabel(text: String) {
+    func addAuthenticationLabel(text: String, font: UIFont) {
         self.font = UIFont.preferredFont(forTextStyle: .title1)
         self.text = text
-        self.font = UIFont.systemFont(ofSize: 35, weight: .bold)
+        self.font = font
         self.textColor = .white
         self.textAlignment = .center
         self.translatesAutoresizingMaskIntoConstraints = false

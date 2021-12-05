@@ -53,21 +53,24 @@ extension SignInViewController {
         backgroundView.contentMode = .scaleToFill
         backgroundView.backgroundColor = UIColor(red: 80, green: 0, blue: 190, alpha: 1)
         
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        logoLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         textFieldStackView.addAuthenticationStackView(axis: .vertical)
         
         buttonsStackViews.addAuthenticationStackView(axis: .horizontal)
+        
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.image = UIImage(named: "mainLogo")
+        
+        logoLabel.addAuthenticationLabel(text: "Weather Application", font: UIFont(name: "Futura", size: 27)!)
         
         emailTextField.addAuthenticationTextField(placeholderText: "Email address")
         
         passwordTextFied.addAuthenticationTextField(placeholderText: "Password")
         
-        signInButton.addAuthenticationButton(title: "Sign In", selector: #selector(signInButtonPressed))
+        signInButton.addAuthenticationButton(title: "Sign In")
+        signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
         
-        signUpButton.addAuthenticationButton(title: "Sign Up", selector: #selector(signUpButtonPressed))
+        signUpButton.addAuthenticationButton(title: "Sign Up")
+        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
     }
     
     private func setLayout() {
@@ -95,7 +98,22 @@ extension SignInViewController {
             backgroundView.heightAnchor.constraint(equalTo: view.heightAnchor),
             backgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
             
+            logoImage.topAnchor.constraint(equalToSystemSpacingBelow: backgroundView.safeAreaLayoutGuide.topAnchor, multiplier: 5),
+            logoImage.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            logoImage.heightAnchor.constraint(equalToConstant: 280),
+            logoImage.widthAnchor.constraint(equalToConstant: 330),
             
+            logoLabel.topAnchor.constraint(equalToSystemSpacingBelow: logoImage.bottomAnchor, multiplier: 5),
+            logoLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: backgroundView.leadingAnchor, multiplier: 2),
+            backgroundView.trailingAnchor.constraint(equalToSystemSpacingAfter: logoLabel.trailingAnchor, multiplier: 2),
+            
+            textFieldStackView.topAnchor.constraint(equalToSystemSpacingBelow: logoLabel.bottomAnchor, multiplier: 3),
+            textFieldStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: backgroundView.leadingAnchor, multiplier: 5),
+            backgroundView.trailingAnchor.constraint(equalToSystemSpacingAfter: textFieldStackView.trailingAnchor, multiplier: 5),
+            
+            buttonsStackViews.topAnchor.constraint(equalToSystemSpacingBelow: textFieldStackView.bottomAnchor, multiplier: 2),
+            buttonsStackViews.leadingAnchor.constraint(equalToSystemSpacingAfter: backgroundView.leadingAnchor, multiplier: 5),
+            backgroundView.trailingAnchor.constraint(equalToSystemSpacingAfter: buttonsStackViews.trailingAnchor, multiplier: 5),
         ])
     }
 }
@@ -104,11 +122,17 @@ extension SignInViewController {
 
 extension SignInViewController {
     @objc func signInButtonPressed() {
-        
+        let weatherVC = WeatherViewController()
+        weatherVC.modalPresentationStyle = .fullScreen
+        weatherVC.modalTransitionStyle = .flipHorizontal
+        self.present(weatherVC, animated: true, completion: nil)
     }
     
     @objc func signUpButtonPressed() {
-        
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .popover
+        signUpVC.modalTransitionStyle = .coverVertical
+        self.present(signUpVC, animated: true, completion: nil)
     }
 }
 

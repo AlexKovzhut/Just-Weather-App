@@ -98,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				02CA4EB4274D9636004A0BC7 /* UIKit */,
+				02B60977275CD07000BF6EF4 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -110,7 +111,6 @@
 				02B6096C275C31C500BF6EF4 /* UITextField.swift */,
 				02B6096E275C325000BF6EF4 /* UIButton.swift */,
 				02B60966275C1BB200BF6EF4 /* UIColor.swift */,
-				02B60977275CD07000BF6EF4 /* String.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
